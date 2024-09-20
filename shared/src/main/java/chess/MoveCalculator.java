@@ -13,6 +13,10 @@ public class MoveCalculator {
                 case ROOK:
                     RookMoveCalculator rookMoveCalculator = new RookMoveCalculator();
                     moves.addAll(rookMoveCalculator.pieceMoves(board, myPosition));
+                case BISHOP:
+                    BishopMoveCalculator bishopMoveCalculator = new BishopMoveCalculator();
+                    moves.addAll(bishopMoveCalculator.pieceMoves(board, myPosition));
+
 
             }
 
