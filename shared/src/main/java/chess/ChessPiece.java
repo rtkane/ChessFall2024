@@ -58,14 +58,19 @@ public class ChessPiece {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ChessPiece piece)) return false;
-        return pieceColor == piece.pieceColor && type == piece.type;
+    public int hashCode() {
+        return Objects.hash(pieceColor, type);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(pieceColor, type);
+    public boolean equals(Object obj) {
+        if (this == obj){
+            return true;
+        }
+        if (obj == null || this.getClass() != obj.getClass()){
+            return false;
+        }
+        ChessPiece piece = (ChessPiece) obj;
+        return Objects.equals(piece.pieceColor, pieceColor) && Objects.equals(piece.type,type);
     }
 }

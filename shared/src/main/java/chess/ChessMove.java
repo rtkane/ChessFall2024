@@ -46,14 +46,19 @@ public class ChessMove {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ChessMove move)) return false;
-        return Objects.equals(startPosition, move.startPosition) && Objects.equals(endPosition, move.endPosition) && promotionPiece == move.promotionPiece;
+    public int hashCode() {
+        return Objects.hash(startPosition, endPosition, promotionPiece);
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(startPosition, endPosition, promotionPiece);
+    public boolean equals(Object obj) {
+        if (this == obj){
+            return true;
+        }
+        if (obj == null || this.getClass() != obj.getClass()){
+            return false;
+        }
+        ChessMove move = (ChessMove) obj;
+        return Objects.equals(move.startPosition, startPosition) && Objects.equals(move.endPosition,endPosition) && Objects.equals(move.promotionPiece, promotionPiece);
     }
 }

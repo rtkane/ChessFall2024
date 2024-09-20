@@ -3,88 +3,20 @@ package chess;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class RookMoveCalculator {
+public class QueenMoveCalculator {
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
         Collection<ChessMove> validMoves = new ArrayList<>();
 
         int currRow;
         int currCol;
-        // Right, Left, Down, Up
-        for (int i = 0; i < 4; i++){
+        //Up, up-right, right, down-right, down, down-left, left, up-left
+
+        for (int i = 0; i < 8; i++){
             currRow = myPosition.getRow();
             currCol = myPosition.getColumn();
-            //Right
+
+            // Up
             if (i == 0){
-                while (currCol < 8){
-                    currCol += 1;
-                    if (inBounds(new ChessPosition(currRow, currCol))){
-                        if (isSpaceEmpty(board, new ChessPosition(currRow, currCol))){
-                            ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
-                            validMoves.add(move);
-                        }else {
-                            if (sameTeam(board, new ChessPosition(currRow, currCol), myPosition)) {
-                                break;
-                            } else {
-                                ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
-                                validMoves.add(move);
-                                break;
-                            }
-                        }
-
-                    }
-                }
-
-            }
-
-            //Left
-            if (i == 1){
-                while (currCol > 1){
-                    currCol -= 1;
-                    if (inBounds(new ChessPosition(currRow, currCol))){
-                        if (isSpaceEmpty(board, new ChessPosition(currRow, currCol))){
-                            ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
-                            validMoves.add(move);
-                        }else {
-                            if (sameTeam(board, new ChessPosition(currRow, currCol), myPosition)) {
-                                break;
-                            } else {
-                                ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
-                                validMoves.add(move);
-                                break;
-                            }
-                        }
-
-                    }
-                }
-
-            }
-
-            // Down
-            if (i == 2){
-                while (currRow > 1){
-                    currRow -= 1;
-                    if (inBounds(new ChessPosition(currRow, currCol))){
-                        if (isSpaceEmpty(board, new ChessPosition(currRow, currCol))){
-                            ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
-                            validMoves.add(move);
-                        }else {
-                            if (sameTeam(board, new ChessPosition(currRow, currCol), myPosition)) {
-                                break;
-                            } else {
-                                ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
-                                validMoves.add(move);
-                                break;
-                            }
-                        }
-
-                    }
-                }
-
-            }
-
-            //Up
-
-            if (i == 3){
                 while (currRow < 8){
                     currRow += 1;
                     if (inBounds(new ChessPosition(currRow, currCol))){
@@ -103,15 +35,172 @@ public class RookMoveCalculator {
 
                     }
                 }
-
             }
+
+            // Up-Right
+            if (i == 1){
+                while (currRow < 8 && currCol < 8){
+                    currRow += 1;
+                    currCol += 1;
+                    if (inBounds(new ChessPosition(currRow, currCol))){
+                        if (isSpaceEmpty(board, new ChessPosition(currRow, currCol))){
+                            ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                            validMoves.add(move);
+                        }else {
+                            if (sameTeam(board, new ChessPosition(currRow, currCol), myPosition)) {
+                                break;
+                            } else {
+                                ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                                validMoves.add(move);
+                                break;
+                            }
+                        }
+
+                    }
+                }
+            }
+            // Right
+            if (i == 2){
+                while (currCol < 8){
+                    currCol += 1;
+                    if (inBounds(new ChessPosition(currRow, currCol))){
+                        if (isSpaceEmpty(board, new ChessPosition(currRow, currCol))){
+                            ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                            validMoves.add(move);
+                        }else {
+                            if (sameTeam(board, new ChessPosition(currRow, currCol), myPosition)) {
+                                break;
+                            } else {
+                                ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                                validMoves.add(move);
+                                break;
+                            }
+                        }
+
+                    }
+                }
+            }
+            // Down-Right
+            if (i == 3){
+                while (currRow > 1 && currCol < 8){
+                    currRow -= 1;
+                    currCol += 1;
+
+                    if (inBounds(new ChessPosition(currRow, currCol))){
+                        if (isSpaceEmpty(board, new ChessPosition(currRow, currCol))){
+                            ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                            validMoves.add(move);
+                        }else {
+                            if (sameTeam(board, new ChessPosition(currRow, currCol), myPosition)) {
+                                break;
+                            } else {
+                                ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                                validMoves.add(move);
+                                break;
+                            }
+                        }
+
+                    }
+                }
+            }
+            // Down
+            if (i == 4){
+                while (currRow > 1){
+                    currRow -= 1;
+                    if (inBounds(new ChessPosition(currRow, currCol))){
+                        if (isSpaceEmpty(board, new ChessPosition(currRow, currCol))){
+                            ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                            validMoves.add(move);
+                        }else {
+                            if (sameTeam(board, new ChessPosition(currRow, currCol), myPosition)) {
+                                break;
+                            } else {
+                                ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                                validMoves.add(move);
+                                break;
+                            }
+                        }
+
+                    }
+                }
+            }
+            // Down-Left
+            if (i == 5){
+                while (currRow > 1 && currCol > 1){
+                    currRow -= 1;
+                    currCol -= 1;
+
+                    if (inBounds(new ChessPosition(currRow, currCol))){
+                        if (isSpaceEmpty(board, new ChessPosition(currRow, currCol))){
+                            ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                            validMoves.add(move);
+                        }else {
+                            if (sameTeam(board, new ChessPosition(currRow, currCol), myPosition)) {
+                                break;
+                            } else {
+                                ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                                validMoves.add(move);
+                                break;
+                            }
+                        }
+
+                    }
+                }
+            }
+            // Left
+            if (i == 6){
+                while (currCol > 1){
+                    currCol -= 1;
+                    if (inBounds(new ChessPosition(currRow, currCol))){
+                        if (isSpaceEmpty(board, new ChessPosition(currRow, currCol))){
+                            ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                            validMoves.add(move);
+                        }else {
+                            if (sameTeam(board, new ChessPosition(currRow, currCol), myPosition)) {
+                                break;
+                            } else {
+                                ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                                validMoves.add(move);
+                                break;
+                            }
+                        }
+
+                    }
+                }
+            }
+            // Up-Left
+            if (i == 7){
+                while (currRow < 8 && currCol > 1){
+                    currRow += 1;
+                    currCol -= 1;
+
+                    if (inBounds(new ChessPosition(currRow, currCol))){
+                        if (isSpaceEmpty(board, new ChessPosition(currRow, currCol))){
+                            ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                            validMoves.add(move);
+                        }else {
+                            if (sameTeam(board, new ChessPosition(currRow, currCol), myPosition)) {
+                                break;
+                            } else {
+                                ChessMove move = new ChessMove(myPosition, new ChessPosition(currRow, currCol), null);
+                                validMoves.add(move);
+                                break;
+                            }
+                        }
+
+                    }
+                }
+            }
+
 
         }
 
 
 
         return validMoves;
+
     }
+
 
 
     private Boolean inBounds(ChessPosition position){
