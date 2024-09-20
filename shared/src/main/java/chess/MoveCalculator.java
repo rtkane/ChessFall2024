@@ -19,6 +19,9 @@ public class MoveCalculator {
                 case KING:
                     KingMoveCalculator kingMoveCalculator = new KingMoveCalculator();
                     moves.addAll(kingMoveCalculator.pieceMoves(board, myPosition));
+                case KNIGHT:
+                    KnightMoveCalculator knightMoveCalculator = new KnightMoveCalculator();
+                    moves.addAll(knightMoveCalculator.pieceMoves(board, myPosition));
 
 
             }
