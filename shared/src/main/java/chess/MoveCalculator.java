@@ -16,6 +16,9 @@ public class MoveCalculator {
                 case BISHOP:
                     BishopMoveCalculator bishopMoveCalculator = new BishopMoveCalculator();
                     moves.addAll(bishopMoveCalculator.pieceMoves(board, myPosition));
+                case KING:
+                    KingMoveCalculator kingMoveCalculator = new KingMoveCalculator();
+                    moves.addAll(kingMoveCalculator.pieceMoves(board, myPosition));
 
 
             }
