@@ -3,7 +3,7 @@ package chess;
 import java.util.Arrays;
 
 /**
- * A chessboard that can hold and rearrange chess pieces.
+ * A chessboard that can hold a         nd rearrange chess pieces.
  * <p>
  * Note: You can add to this class, but you may not alter
  * signature of the existing methods.
@@ -80,6 +80,10 @@ public class ChessBoard {
         this.addPiece(new ChessPosition(7,7), new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.PAWN));
         this.addPiece(new ChessPosition(7,8), new ChessPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.PAWN));
 
+    }
+
+    public void removePiece(ChessPosition position){
+        squares[position.getRow() - 1][position.getColumn() -1] = null;
     }
 
     @Override
