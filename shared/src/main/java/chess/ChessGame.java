@@ -221,7 +221,17 @@ public class ChessGame {
      * @return True if the specified team is in check
      */
     public boolean isInCheck(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        if (teamColor == TeamColor.WHITE) {
+            if (isKingExposed(TeamColor.WHITE)) {
+                return true;
+            }
+        }
+        if (teamColor == TeamColor.BLACK) {
+            if (isKingExposed(TeamColor.BLACK)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
